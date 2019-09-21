@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+<!-- 		离放学还剩<span>00</span>时
+		<span>00</span>分
+		<span>00</span>秒 -->
+		<div id="time"></div>
+		
+		<script type="text/javascript">
+			var hour;
+			var min;
+			var sec;
+			var time =setInterval(mytime,1000)
+			
+			function mytime(){	
+		var now = new Date();
+		var end = new Date('2019/9/20 12:15:00');
+		//获取毫秒值  getTime
+		var nows = now.getTime();
+		var ends = end.getTime();
+		//计算毫秒之差
+		var cha = ends - nows;	
+			
+			if(cha>0){
+				 hour =Math.floor(cha/1000/60/60);
+				 min =Math.floor(cha/1000/60)-(hour*60);
+				 sec =Math.floor((cha/1000)-(hour*60*60)-(min*60));
+				
+				hour = hour<10?"0"+hour:hour;
+				min = min<10?"0"+min:min;
+				sec = sec<10?"0"+sec:sec;
+				
+				// var spans =document.getElementsByTagName("span");
+				// spans[0].innerHTML = hour;
+				// spans[1].innerHTML = min;
+				// spans[2].innerHTML = sec;
+				document.getElementById("time").innerHTML="离放学还剩"+hour+"小时,"+min+"分"+sec+"秒";
+			}else{
+				document.write("<h1>时间到</h1>");
+				clearInterval(time);
+			}
+		
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>
